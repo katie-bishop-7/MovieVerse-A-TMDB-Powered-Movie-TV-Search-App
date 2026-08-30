@@ -23,10 +23,9 @@
 }
 
 body {
-    height: 0px;
+    height: auto;
     background: var(--background);
     color: var(--dark)
-
 }
 
 #page {
