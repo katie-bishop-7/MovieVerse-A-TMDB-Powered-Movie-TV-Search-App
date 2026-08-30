@@ -12,6 +12,13 @@ const closeIcon = document.getElementById("close-icon")
 let drawerIsOpen = false;
 
 
+searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        window.location.href = `${findButton.href}?query=${searchInput.value}&page=${1}`;
+    }
+});
+
 // Nav drawer open and close
 navButton.addEventListener("click", e => {
     drawerIsOpen = !drawerIsOpen;
@@ -78,7 +85,11 @@ personDetails(personId)
                 for (movieObj of result.cast) {
                     movieDetails(movieObj.id)
                         .then(res => {
-                            const imgURL = `${imgUrl}w500${res.poster_path}`
+                            if (res.poster_path === null) {
+                                imgURL = "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg";
+                            } else {
+                                imgURL = `${imgUrl}w500${res.poster_path}`
+                            }
                             const title = res.title
 
                             const card = document.createElement('div')
@@ -111,7 +122,11 @@ personDetails(personId)
                 for (tvObj of result.cast) {
                     tvDetails(tvObj.id)
                         .then(res => {
-                            const imgURL = `${imgUrl}w500${res.poster_path}`
+                            if (res.poster_path === null) {
+                                imgURL = "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg";
+                            } else {
+                                imgURL = `${imgUrl}w500${res.poster_path}`
+                            }
                             const title = res.name
 
                             const card = document.createElement('div')
@@ -143,7 +158,7 @@ personDetails(personId)
 
 const carousel = document.getElementById("carousel-slider")
 function makeImageCarousel(arrayOfPosters) {
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 15; i++) {
         for (posterObj of arrayOfPosters) {
             let poster = document.createElement("img")
             poster.src = `${imgUrl}w500${posterObj.file_path}`;

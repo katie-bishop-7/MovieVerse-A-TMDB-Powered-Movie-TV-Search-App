@@ -18,6 +18,13 @@ const nextPageTV = document.getElementById("next-page-tv")
 const prevPageTV = document.getElementById("prev-page-tv")
 let drawerIsOpen = false;
 
+searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        window.location.href = `${findButton.href}?query=${searchInput.value}&page=${1}`;
+    }
+});
+
 // Remove search input on close icon click
 closeIcon.addEventListener("click", (e) => {
     searchInput.value = ""
@@ -57,7 +64,11 @@ if (tvName) {
             let title = document.createElement('h3')
             let voteAverage = document.createElement('div')
 
-            img.src = `${imgUrl}w500${results.results[i].poster_path}`
+            if (results.results[i].poster_path === null) {
+                img.src = "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
+            } else {
+                img.src = `${imgUrl}w500${results.results[i].poster_path}`
+            }
             img.alt = `${results.results[i].name} poster`
             title.innerText = `${results.results[i].name} (${results.results[i].first_air_date.slice(0,4)})`
             voteAverage.innerText = `Vote Average: ${results.results[i].vote_average}`

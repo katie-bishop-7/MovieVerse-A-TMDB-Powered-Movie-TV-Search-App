@@ -18,6 +18,7 @@
     --medium-light: rgb(196, 191, 182);
     --background: rgb(216, 216, 216);
     --accent: rgb(206, 182, 75);
+    --accent-dull: rgb(206, 182, 75, 0.8);
     --accent-2: rgb(129, 69, 34);
 }
 
@@ -25,19 +26,16 @@ body {
     height: 0px;
     background: var(--background);
     color: var(--dark)
+
 }
 
 #page {
     position: relative;
-    margin-top: 120px;
-    margin-left: 100px;
-    margin-right: 100px;
+    max-width: 1015px;
     margin-bottom: 36px;
-    padding: 32px 16px;
+    padding: 2rem;
     height: auto;
     background-color: var(--light);
-    z-index: -3;
-    padding-left: 36px;
 }
 
 .dark-theme {
@@ -96,8 +94,8 @@ input {
     flex-direction: row;
     align-items: center;
     padding-left: 4px;
-    z-index: 2;
-    border-bottom: ridge 4px var(--accent);
+    z-index: 100;
+    border-bottom: ridge 4px var(--accent-dull);
 }
 
 #film-stripe {
@@ -130,6 +128,16 @@ input {
     background-color: var(--light);
 }
 
+.main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    margin-top: 8.4rem;
+}
+
 #search-div {
     position: fixed;
     top: 98px;
@@ -138,7 +146,7 @@ input {
     text-align: right;
     padding: 4px;
     background-color: var(--medium-light);
-    z-index: -2;
+    z-index: 98;
 }
 
 #button-div {
@@ -211,7 +219,7 @@ a:hover {
     left: 20px;
     background-color: var(--accent);
     transition: top 0.3s ease;
-    z-index: 1;
+    z-index: 99;
 }
 
 #drawer[data-open=true]{
@@ -228,8 +236,9 @@ a:hover {
 .card-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
+    gap: 2rem;
     width: auto;
     margin-right: 36px;
     height: auto;
@@ -238,26 +247,45 @@ a:hover {
 }
 
 .info-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto auto;
+    gap: .5rem;
     text-align: center;
-    width: auto;
+    width: 170px;
     height: 90%;
     background-color: var(--light);
+    text-wrap: wrap;
+
+}
+
+.info-card h3 {
+    margin: 0;
+    padding-top: 8px;
+}
+
+.info-card div {
+    padding: 0;
+}
+
+.clickable {
+    cursor: pointer;
 }
 
 .clickable:hover{
-    transform: scale(1.1);
+    transform: scale(1.05);
     transition: transform .08s ease-in;
 }
 
 .clickable:active{
-    transform: scale(1.2);
+    transform: scale(1.1);
     transition: transform .04s ease-in;
 }
 
 .info-card > img {
-    
     width: 170px;
-    height: auto;
+    height: 250px;
+    object-fit: cover;
     border-radius: 6px;
 }
 
@@ -297,14 +325,9 @@ a:hover {
 }
 
 .movie-cast-card {
-    width: 150px;
     height: 100%;
     word-wrap: break-word;
     margin: 10px;
-}
-.movie-cast-card > img {
-    width: 100px;
-    min-height: auto;
 }
 
 .character {
@@ -318,6 +341,10 @@ a:hover {
 
 .row {
     flex-direction: row;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 .column {
@@ -347,5 +374,7 @@ a:hover {
 #carousel-slider {
     display: flex;
     flex-direction: row;
+    max-width: 100vw;
+    overflow: hidden;
 }
 

@@ -20,6 +20,14 @@ const prevPageTV = document.getElementById("prev-page-tv")
 const prevPagePeople = document.getElementById("prev-page-people")
 let drawerIsOpen = false;
 
+searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        window.location.href = `${findButton.href}?query=${searchInput.value}&page=${1}`;
+    }
+});
+
+
 
 // Remove search input on close icon click
 closeIcon.addEventListener("click", (e) => {
@@ -87,7 +95,11 @@ if (queryObj.query) {
                 let title = document.createElement('h3')
                 let voteAverage = document.createElement('div')
 
-                img.src = `${imgUrl}w500${results.results[i].poster_path}`
+                if (results.results[i].poster_path === null) {
+                    img.src = "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
+                } else {
+                    img.src = `${imgUrl}w500${results.results[i].poster_path}`
+                }
                 img.alt = `${results.results[i].title} poster`
                 title.innerText = `${results.results[i].title} (${results.results[i].release_date.slice(0, 4)})`
                 voteAverage.innerText = `Vote Average: ${results.results[i].vote_average}`
@@ -132,7 +144,12 @@ if (queryObj.query) {
                 let title = document.createElement('h3')
                 let voteAverage = document.createElement('div')
 
-                img.src = `${imgUrl}w500${results.results[i].poster_path}`
+                if (results.results[i].poster_path === null) {
+                    img.src = "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
+                } else {
+                    img.src = `${imgUrl}w500${results.results[i].poster_path}`
+                }
+
                 img.alt = `${results.results[i].name} poster`
                 title.innerText = `${results.results[i].name} (${results.results[i].first_air_date.slice(0, 4)})`
                 voteAverage.innerText = `Vote Average: ${results.results[i].vote_average}`
@@ -174,7 +191,11 @@ if (queryObj.query) {
                 let card = document.createElement('div')
                 let title = document.createElement('h3')
 
-                img.src = `${imgUrl}w500${results.results[i].profile_path}`
+                if (results.results[i].profile_path === null) {
+                    img.src = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+                } else {
+                    img.src = `${imgUrl}w500${results.results[i].profile_path}`
+                }
                 img.alt = `${results.results[i].name} picture`
                 title.innerText = results.results[i].name
 

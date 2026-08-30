@@ -12,6 +12,13 @@ const closeIcon = document.getElementById("close-icon")
 
 let drawerIsOpen = false;
 
+searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        window.location.href = `${findButton.href}?query=${searchInput.value}&page=${1}`;
+    }
+});
+
 // Remove search input on close icon click
 closeIcon.addEventListener("click", (e) => {
     searchInput.value = ""
@@ -85,7 +92,11 @@ movieDetails(movieId)
 
                     personDetails(castObj.id)
                         .then(res => {
-                            img.src = `${imgUrl}w500${res.profile_path}`;
+                            if (res.profile_path === null) {
+                                img.src = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+                            } else {
+                                img.src = `${imgUrl}w500${res.profile_path}`;
+                            }
                             nameDiv.innerText = res.name;
                             card.className = "info-card movie-cast-card clickable"
 
@@ -105,7 +116,7 @@ movieDetails(movieId)
 
 const carousel = document.getElementById("carousel-slider")
 function makeImageCarousel(arrayOfPosters) {
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 15; i++) {
         for (posterObj of arrayOfPosters) {
             let poster = document.createElement("img")
             poster.src = `${imgUrl}w500${posterObj.file_path}`;

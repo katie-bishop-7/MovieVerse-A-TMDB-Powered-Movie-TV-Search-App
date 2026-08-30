@@ -10,6 +10,12 @@ const drawer = document.getElementById("drawer")
 const closeIcon = document.getElementById("close-icon")
 let drawerIsOpen = false;
 
+searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        window.location.href = `${findButton.href}?query=${searchInput.value}&page=${1}`;
+    }
+});
 
 // Nav drawer open and close
 navButton.addEventListener("click", e => {
@@ -37,7 +43,11 @@ tvDetails(seriesId)
         // Insert image
         console.log(results)
         const poster = document.getElementById("movie-poster")
-        poster.src = `${imgUrl}w500${results.poster_path}`
+        if (results.poster_path === null) {
+            poster.src = "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg"
+        } else {
+            poster.src = `${imgUrl}w500${results.poster_path}`
+        }
         poster.alt = `${results.title} poster`
 
         // Insert title, release date, rating, overview, runtime, vote average
@@ -104,7 +114,7 @@ tvDetails(seriesId)
 
     const carousel = document.getElementById("carousel-slider")
     function makeImageCarousel(arrayOfPosters) {
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 15; i++) {
             for (posterObj of arrayOfPosters) {
                 let poster = document.createElement("img")
                 poster.src = `${imgUrl}w500${posterObj.file_path}`;

@@ -17,6 +17,13 @@ const nextPagePeople = document.getElementById("next-page-people")
 const prevPagePeople = document.getElementById("prev-page-people")
 let drawerIsOpen = false;
 
+searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        window.location.href = `${findButton.href}?query=${searchInput.value}&page=${1}`;
+    }
+});
+
 // Nav drawer open and close
 navButton.addEventListener("click", e => {
     drawerIsOpen = !drawerIsOpen;
@@ -54,12 +61,15 @@ if (peopleName) {
     .then(results => {
         for (let i = 0; i < results.results.length; i++) { // iterate over number of cards
             // create card with info
-            console.log(results.results[i])
             let img = document.createElement('img')
             let card = document.createElement('div')
             let name = document.createElement('h3')
 
-            img.src = `${imgUrl}w500${results.results[i].profile_path}`
+            if (results.results[i].profile_path === null) {
+                img.src = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+            } else {
+                img.src = `${imgUrl}w500${results.results[i].profile_path}`
+            }
             img.alt = `${results.results[i].name} profile picture`
             name.innerText = `${results.results[i].name}`
 
@@ -103,7 +113,11 @@ if (peopleName) {
                 let card = document.createElement('div')
                 let name = document.createElement('h3')
     
-                img.src = `${imgUrl}w500${results.results[i].profile_path}`
+                if (results.results[i].profile_path === null) {
+                    img.src = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+                } else {
+                    img.src = `${imgUrl}w500${results.results[i].profile_path}`
+                }
                 img.alt = `${results.results[i].name} profile picture`
                 name.innerText = `${results.results[i].name}`
     
