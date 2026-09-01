@@ -388,6 +388,10 @@ a:hover {
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
+    #movie-poster {
+        position: sticky;
+        top: calc(76px + 4.5rem);
+    }
     #banner {
         flex-wrap: wrap;
     }
@@ -416,7 +420,7 @@ a:hover {
     #drawer[data-open=true]{
         top: 76px;
     }
-
+    
     .info-card {
         width: 125px;
     }
