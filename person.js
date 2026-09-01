@@ -158,12 +158,22 @@ personDetails(personId)
 
 const carousel = document.getElementById("carousel-slider")
 function makeImageCarousel(arrayOfPosters) {
-    for (let i = 0; i < 15; i++) {
+    let multiplier = 1;
+    let maxImages = 50;
+    if (arrayOfPosters.length < maxImages) {
+        multiplier = Math.floor(maxImages / arrayOfPosters.length);
+    };
+    let numImages = 0;
+    for (let i = 0; i < multiplier; i++) {
         for (posterObj of arrayOfPosters) {
+            if (numImages >= maxImages) {
+                break;
+            }
             let poster = document.createElement("img")
             poster.src = `${imgUrl}w500${posterObj.file_path}`;
             poster.className = "carousel-picture"
             carousel.appendChild(poster)
+            numImages++;
         }
     }
 }

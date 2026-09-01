@@ -30,6 +30,7 @@ body {
 
 #page {
     position: relative;
+    width: 80%;
     max-width: 1015px;
     margin-bottom: 36px;
     padding: 2rem;
@@ -134,7 +135,8 @@ input {
     align-items: center;
     justify-content: center;
     z-index: 1;
-    margin-top: 8.4rem;
+    margin-top: 8.2rem;
+    width: 100%;
 }
 
 .search-category {
@@ -398,6 +400,10 @@ a:hover {
         font-size: 24px;
     }
     
+    .main {
+        margin-top: 7rem;
+    }
+
     #search-div {
         top: 76px;
         z-index: 99;
@@ -423,15 +429,17 @@ a:hover {
     .card-container {
         gap: 1rem;
     }
-
-    #movie-info-container {
-        flex-direction: column;
-        align-items: center;
-    }
     
     #movie-info-container > img {
         width: 200px;
+        height: 250px;
+        object-fit: cover;
     }
+    
+    #movie-info-container {
+        padding-top: 2rem;
+    }
+
 }
 
 @media (max-width: 480px) {
@@ -454,7 +462,8 @@ a:hover {
     }
     
     .info-card {
-        width: 110px;
+        width: 100px;
+        min-width: 100px;
     }
     
     .info-card > img {
@@ -462,9 +471,16 @@ a:hover {
         height: 150px;
     }
 
-    h1 {
+    h1 a {
         font-size: 18px;
     }
 
+    #movie-info-container {
+        flex-direction: column;
+        align-items: center;
+    }
 
+    #movie-info {
+        margin: 1rem;
+    }
 }
