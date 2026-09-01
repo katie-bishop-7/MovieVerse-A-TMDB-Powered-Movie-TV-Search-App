@@ -112,19 +112,19 @@ tvDetails(seriesId)
     })
     .catch(error => console.log(error));
 
-    const carousel = document.getElementById("carousel-slider")
-    function makeImageCarousel(arrayOfPosters) {
-        let multiplier = 1;
-        let maxImages = 50;
-        if (arrayOfPosters.length < maxImages) {
-            multiplier = Math.floor(maxImages / arrayOfPosters.length);
-        };
-        let numImages = 0;
-        for (let i = 0; i < multiplier; i++) {
-            for (posterObj of arrayOfPosters) {
-                if (numImages >= maxImages) {
-                    break;
-                }
+const carousel = document.getElementById("carousel-slider")
+function makeImageCarousel(arrayOfPosters) {
+    let multiplier = 1;
+    let maxImages = 50;
+    if (arrayOfPosters.length < maxImages) {
+        multiplier = Math.floor(maxImages / arrayOfPosters.length);
+    };
+    let numImages = 0;
+    for (let i = 0; i < multiplier; i++) {
+        for (posterObj of arrayOfPosters) {
+            if (numImages >= maxImages) {
+                break;
+            }
             for (posterObj of arrayOfPosters) {
                 let poster = document.createElement("img")
                 poster.src = `${imgUrl}w500${posterObj.file_path}`;
@@ -134,6 +134,7 @@ tvDetails(seriesId)
             }
         }
     }
+}
     // Make the call to get the info based on the id
     tvImages(seriesId)
         .then(result => {
