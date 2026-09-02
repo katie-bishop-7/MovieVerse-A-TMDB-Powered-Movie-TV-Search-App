@@ -420,7 +420,7 @@ a:hover {
     #drawer[data-open=true]{
         top: 76px;
     }
-    
+
     .info-card {
         width: 125px;
     }
@@ -478,7 +478,9 @@ a:hover {
     h1 a {
         font-size: 18px;
     }
-
+    #movie-poster {
+        position: static;
+    }
     #movie-info-container {
         flex-direction: column;
         align-items: center;
